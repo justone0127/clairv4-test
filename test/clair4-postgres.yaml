@@ -22,7 +22,7 @@ spec:
             claimName: clairv4-postgres
       containers:
         - name: postgres
-          image: ocp-registry-quay-quay.apps.cluster-6a56.sandbox1811.opentlc.com/admin/postgres:11.5
+          image: postgres:11.5
           imagePullPolicy: "IfNotPresent"
           ports:
             - containerPort: 5432
