@@ -1,0 +1,54 @@
+introspection_addr: :8089
+http_listen_addr: :8080
+log_level: debug
+indexer:
+  connstring: host=clairv4-postgres port=5432 dbname=clair user=postgres password=postgres sslmode=disable
+  scanlock_retry: 10
+  layer_scan_concurrency: 5
+  migrations: true
+matcher:
+  connstring: host=clairv4-postgres port=5432 dbname=clair user=postgres password=postgres sslmode=disable
+  max_conn_pool: 100
+  run: ""
+  migrations: true
+  indexer_addr: clair-indexer
+  updater_sets:
+  - "alpine"
+  - "aws"
+  - "debian"
+  - "oracle"
+  - "photon"
+  - "pyupio"
+  - "rhel"
+  - "suse"
+  - "ubuntu"
+matchers:
+  names:
+  - "alpine"
+  - "aws"
+  - "debian"
+  - "oracle"
+  - "photon"
+  - "python"
+  - "rhel"
+  - "suse"
+  - "ubuntu"
+  - "crda"
+notifier:
+  connstring: host=clairv4-postgres port=5432 dbname=clair user=postgres password=postgres sslmode=disable
+  delivery: 1m
+  poll_interval: 5m
+  migrations: true
+auth:
+  psk:
+    key: UFNDdmpGZk9IRDdFY0s3WUM5dDEwZVd6WW1hbkdBRmE=
+    iss: ["quay"]
+# tracing and metrics
+trace:
+  name: "jaeger"
+  probability: 1
+  jaeger:
+    agent_endpoint: "localhost:6831"
+    service_name: "clair"
+metrics:
+  name: "prometheus"
